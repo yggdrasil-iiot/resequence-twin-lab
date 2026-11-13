@@ -7,7 +7,7 @@
 #
 # Host port remaps (existing services on this machine):
 #   Kafka:   19092 → container:9092  (carry-kafka-1 holds 9092)
-#   Ditto:   18080 → container:8080  (pfplay-local-app-1 holds 8080)
+#   Ditto:   18080 → container:8080
 #   Grafana: 3001  → container:3000  (another service holds 3000)
 
 services:
@@ -117,7 +117,7 @@ services:
       rtw:
         aliases: [ditto-cluster]
     ports:
-      - "18080:8080"  # host 8080 occupied by pfplay; access Ditto at http://localhost:18080
+      - "18080:8080"  # access Ditto at http://localhost:18080
     environment:
       # gateway does NOT connect to MongoDB directly
       - JAVA_TOOL_OPTIONS=-XX:ActiveProcessorCount=2 -XX:+ExitOnOutOfMemoryError -XX:+UseContainerSupport -Xss512k -XX:MaxRAMPercentage=50 -XX:+UseG1GC -Dpekko.coordinated-shutdown.exit-jvm=on -Dpekko.cluster.shutdown-after-unsuccessful-join-seed-nodes=180s -Dpekko.cluster.failure-detector.threshold=15.0 -Dpekko.cluster.failure-detector.expected-response-after=10s -Dpekko.cluster.failure-detector.acceptable-heartbeat-pause=20s -Dpekko.cluster.downing-provider-class=
